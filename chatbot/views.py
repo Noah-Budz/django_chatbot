@@ -13,16 +13,17 @@ openai_api_key = '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'
 openai.api_key = openai_api_key
 
 def ask_openai(message):
-    # response = openai.Completion.create(
-    #     model = "text-davinci-003",
-    #     prompt = message,
-    #     max_tokens = 150,
-    #     n = 1,
-    #     stop = None,
-    #     temperature = 0.7,
+    
+    # response = openai.ChatCompletion.create(
+    #     model = "gpt-3.5-turbo",
+    #     messages = [
+    #         {"role": "system", "content": "You are a helpful assisstant."},
+    #         {"role": "user", "content": message},
+    #     ]
     # )
-    # answer = response.choice[0].text.strip()
+    # answer = response.choices[0].message.content.strip()
     # return answer
+
     return "generic answer to avoid rate limit errors for now"
 
 # Create your views here.
