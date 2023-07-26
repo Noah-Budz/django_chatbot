@@ -48,11 +48,15 @@ python manage.py migrate
 
 python manage.py createsuperuser
 
-8. Start the development server:
+8. Add your API key
+
+Create a config.json file and add your openAI api key
+
+9. Start the development server:
 
 python manage.py runserver
 
-9. Open your web browser and visit `http://localhost:8000` to access the chatbot application.
+10. Open your web browser and visit `http://localhost:8000` to access the chatbot application.
 
 ## Usage
 
