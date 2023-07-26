@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import openai
+import json
 
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -9,22 +10,26 @@ from .models import Chat
 from django.utils import timezone
 
 
-openai_api_key = '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'
+def get_keys(path):
+    with open(path) as f:
+        return json.load(f)
+
+keys = get_keys("config.json")
+
+openai_api_key = keys['openai_api_key']
 openai.api_key = openai_api_key
 
 def ask_openai(message):
     
-    # response = openai.ChatCompletion.create(
-    #     model = "gpt-3.5-turbo",
-    #     messages = [
-    #         {"role": "system", "content": "You are a helpful assisstant."},
-    #         {"role": "user", "content": message},
-    #     ]
-    # )
-    # answer = response.choices[0].message.content.strip()
-    # return answer
-
-    return "generic answer to avoid rate limit errors for now"
+    response = openai.ChatCompletion.create(
+        model = "gpt-3.5-turbo",
+        messages = [
+            {"role": "system", "content": "You are a helpful assisstant."},
+            {"role": "user", "content": message},
+        ]
+    )
+    answer = response.choices[0].message.content.strip()
+    return answer
 
 # Create your views here.
 def chatbot(request):
